@@ -1,74 +1,56 @@
-
-
 import datetime as dt
+
 
 def get_month(input):
 
+    '''
+    Function takes an input string from the intro field and returns the integer month
+    Arguments: input string from the intro field
+    return: integer month
+    Execution: call as get_month(intro_field)
+    '''
+
     if input[0:1].isdigit():
-        #print('position is ' + str(input.find('-', 0)))
+        # check the position of "-" to handle - intro='5-May'
         pos = input.find('-', 0)
         if pos == 1:
             ni = '0'+input
             Introdt = dt.datetime.strptime(ni, '%y-%b')
-            return(Introdt.month)
+            return Introdt.month
 
         else:
             Introdt = dt.datetime.strptime(input, '%y-%b')
-            return(Introdt.month)
+            return Introdt.month
 
-    else :
+    else:
         Introdt = dt.datetime.strptime(input, '%b-%y')
-        return(Introdt.month)
+        return Introdt.month
 
 
 def get_date_joined(yr, mth):
 
+    '''
+    Function to return a Python datetime.date of when the character joined the Avengers
+    Arguments: 2 - year & month
+    return: date (join date)
+    Execution: get_date_joined(year, month)
+    '''
+
     jmnth = get_month(mth)
-
     joindt = dt.date(int(yr),jmnth,1 )  # prints in as 2018-05-01
-
     strdt = 'datetime.date('+str(yr)+ ', ' + str(jmnth) + ', ' + str(1) + ')'
-
-    return(strdt)
+    return strdt
 
 
 def days_since_joined(yr, mth):
 
+    '''
+    Function to return the integer number of days since the character joined the Avengers from today's date
+    Arguments: 2 - year & month
+    return: integer (number of days since joined)
+    Execution: days_since_joined(year, month)
+    '''
+
     d1 = dt.date.today()
-
-    d2 = dt.date(int(yr),get_month(mth),1 ) #get_date_joined(yr, mth)
-
-    return((d1-d2).days)
-
-# def main():
-#
-#     print("i m in main")
-#
-#     #it's easy to print this list of course:
-#     print(sys.argv)
-#
-#     #or it can be iterated via a for loop:
-#
-#     for i in range(len(sys.argv)):
-#         if i == 0:
-#             print("Function name: %s" % sys.argv[0])
-#         else:
-#             print("%d. argument: %s" % (i, sys.argv[i]))
-#
-#
-#     mnth = get_month(sys.argv[2])
-#     print(mnth)
-#
-#     jdate = get_date_joined(sys.argv[1], sys.argv[2])
-#     print(jdate)
-#
-#     jdays = days_since_joined(sys.argv[1], sys.argv[2])
-#     print('days difference :\t')
-#     print(jdays)
-#
-#     print('read')
-#
-#
-# if __name__ == "__main__":
-#
-#     main()
+    d2 = dt.date(int(yr), get_month(mth), 1)
+    return (d1-d2).days

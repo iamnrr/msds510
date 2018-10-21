@@ -1,5 +1,3 @@
-
-
 import msds510.util as u
 
 records = [
@@ -10,22 +8,25 @@ records = [
             dict(year='2014', intro='14-Jun')
           ]
 
+
 def main():
+
+    '''
+    Function to test the "util.py" module
+    Arguments: none
+    return: none
+    Execution: test_util_module.py
+    '''
+
     print('\n')
     for i in range(len(records)):
 
         print('Input Record - ', end='')
         print(records[i])
-
-        jyr=records[i]['year']
-
-        jmt=records[i]['intro']
-
+        jyr = records[i]['year']
+        jmt = records[i]['intro']
         print('Date joined - ', end='')
-
         jdtstr = u.get_date_joined(jyr, jmt)
-
-
         if len(str(u.get_month(jmt))) == 2:
             newjdst = str(jyr) + '-' + str(u.get_month(jmt))+'-01'
         else:
